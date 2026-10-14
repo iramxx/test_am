@@ -3,57 +3,172 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Maison Amira reimagines Moroccan argan beauty rituals through a contemporary luxury experience.">
-  <meta name="theme-color" content="#283124">
-  <title>Maison Amira — Moroccan Beauty Rituals</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23283124'/%3E%3Cpath d='M16 48V18l16 21 16-21v30' fill='none' stroke='%23d6b276' stroke-width='4'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#4b1025">
+  <meta name="description" content="A little birthday note for Amira, with love and a little sparkle.">
+  <title>For Amira, with love · 16 October</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --wine: #4b1025;
+      --wine-dark: #2d0a19;
+      --red: #9f3344;
+      --rose: #d89a9b;
+      --cream: #fbf2e7;
+      --paper: #fffaf3;
+      --ink: #32151b;
+      --gold: #cba86b;
+      --muted: #826b69;
+      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    .hero {
+      min-height: 92svh; display: grid; place-items: center; position: relative; overflow: hidden;
+      padding: 5.5rem 1.5rem 4.5rem; color: var(--cream); text-align: center;
+      background: radial-gradient(ellipse at 50% 45%, #74263b 0%, #4b1025 42%, #2d0a19 100%);
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; width: min(75vw, 760px); aspect-ratio: 1; border: 1px solid #cba86b3b; border-radius: 50%; pointer-events: none; }
+    .hero::before { width: min(95vw, 940px); }
+    .hero::after { width: min(73vw, 720px); }
+    .glow { position: absolute; width: 360px; aspect-ratio: 1; border-radius: 50%; background: #d84e6330; filter: blur(80px); }
+    .hero-inner { position: relative; z-index: 1; width: min(100%, 770px); }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .24em; font-size: .7rem; font-weight: 600; }
+    .hero .eyebrow { margin: 0 0 2.15rem; }
+    h1, h2, blockquote { font-family: var(--serif); font-weight: 400; }
+    h1 { margin: 0; font-size: clamp(3.7rem, 10vw, 7.6rem); letter-spacing: -.055em; line-height: .91; }
+    h1 em, h2 em { font-weight: 400; color: var(--rose); }
+    .hero-subtitle { max-width: 420px; margin: 1.7rem auto 0; color: #f7e9e3; font-family: var(--serif); font-size: clamp(1.1rem, 2.6vw, 1.4rem); line-height: 1.55; }
+    .hero-date { margin: 2.3rem 0 1.4rem; color: #e8d4bc; font-size: .76rem; letter-spacing: .22em; text-transform: uppercase; }
+    .button { display: inline-flex; align-items: center; gap: .65rem; padding: .92rem 1.35rem; border: 1px solid var(--gold); border-radius: 99px; background: transparent; color: var(--cream); text-decoration: none; font: 500 .92rem var(--sans); cursor: pointer; transition: background .2s, color .2s, transform .2s; }
+    .button:hover, .button:focus-visible { background: var(--gold); color: var(--wine-dark); transform: translateY(-2px); }
+    .button:focus-visible, summary:focus-visible { outline: 3px solid #f4d898; outline-offset: 4px; }
+    .scroll-note { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); color: #dfc7bc; font-size: .69rem; letter-spacing: .17em; text-transform: uppercase; }
+    .sparkle { position: absolute; color: var(--gold); opacity: .85; font-size: 1.25rem; }
+    .s1 { top: 21%; left: 15%; } .s2 { top: 30%; right: 15%; font-size: .8rem; } .s3 { bottom: 24%; left: 23%; font-size: .8rem; } .s4 { bottom: 28%; right: 19%; }
+    .section { padding: clamp(4rem, 9vw, 7.5rem) 1.4rem; }
+    .note { width: min(100%, 810px); margin: 0 auto; text-align: center; }
+    .note .eyebrow, .future .eyebrow, .soundtrack .eyebrow { color: var(--red); }
+    h2 { margin: .6rem 0 1.5rem; font-size: clamp(2.6rem, 6.5vw, 4.7rem); letter-spacing: -.04em; line-height: 1.02; }
+    .note-copy { max-width: 610px; margin: 0 auto; color: #624449; font-family: var(--serif); font-size: clamp(1.15rem, 2.35vw, 1.4rem); line-height: 1.85; }
+    .note-copy p { margin: .8rem 0; }
+    .signoff { display: inline-block; margin-top: 1rem; color: var(--wine); font-family: var(--serif); font-size: 1.35rem; font-style: italic; }
+    .future { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 7vw, 6rem); align-items: center; background: #f0e1d4; }
+    .future-copy { width: min(100%, 480px); justify-self: end; }
+    .future h2 { color: var(--wine); }
+    .future p { max-width: 460px; color: #6b4e4e; font-size: 1rem; line-height: 1.75; }
+    .seal { display: grid; place-items: center; justify-self: start; width: min(70vw, 290px); aspect-ratio: 1; border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 0 0 8px #cba86b18, 0 0 0 16px #cba86b10; color: var(--cream); text-align: center; background: radial-gradient(circle at 35% 30%, #7d3044, var(--wine) 68%); }
+    .seal-inner { padding: 1.25rem; }
+    .seal .small { display: block; margin-bottom: .8rem; color: var(--gold); font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; }
+    .seal strong { display: block; font: 400 clamp(2.7rem, 7vw, 4rem)/.9 var(--serif); }
+    .seal em { display: block; margin-top: .8rem; color: var(--rose); font: italic 1.1rem var(--serif); }
+    .prescription { display: inline-block; margin-top: .8rem; padding: .85rem 1rem; border-left: 2px solid var(--gold); color: var(--wine); background: #fff9f050; font-family: var(--serif); font-style: italic; }
+    .soundtrack { text-align: center; background: var(--paper); }
+    .soundtrack h2 { color: var(--wine); }
+    .soundtrack-intro { margin: 0 auto 2rem; color: var(--muted); font-family: var(--serif); font-size: 1.1rem; }
+    .records { display: flex; justify-content: center; flex-wrap: wrap; gap: .65rem; width: min(100%, 780px); margin: 0 auto; }
+    .record { padding: .7rem 1rem; border: 1px solid #dbc9bd; border-radius: 99px; color: #663040; background: #fffdf9; font-size: .88rem; }
+    .music-note { margin-top: 2rem; color: #927c77; font: italic .98rem var(--serif); }
+    .closing { padding: 5rem 1.5rem 5.5rem; color: var(--cream); background: var(--wine-dark); text-align: center; }
+    .closing blockquote { max-width: 720px; margin: .7rem auto 1.7rem; color: var(--cream); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; }
+    .closing blockquote em { color: var(--rose); }
+    .closing .button { margin-top: .7rem; }
+    footer { padding: 1.1rem; color: #cdb9af; background: var(--wine-dark); text-align: center; font-size: .72rem; letter-spacing: .07em; }
+    #confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+    @media (max-width: 700px) {
+      .hero { min-height: 88svh; }
+      .s1 { left: 7%; } .s2 { right: 8%; } .s3 { left: 10%; } .s4 { right: 9%; }
+      .future { grid-template-columns: 1fr; text-align: center; }
+      .future-copy, .seal { justify-self: center; }
+      .future p { margin-left: auto; margin-right: auto; }
+      .prescription { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
 </head>
 <body>
-  <div class="page-grain" aria-hidden="true"></div>
-  <header class="nav" id="top">
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
-    <a class="wordmark" href="#top" aria-label="Maison Amira home"><small>MAISON</small><strong>AMIRA</strong></a>
-    <nav class="nav-links" aria-label="Main navigation"><a href="#maison">The Maison</a><a href="#oils">The Oils</a><a href="#argan">Our Argan</a><a href="#ritual">Ritual</a><a href="#journal">Journal</a></nav>
-    <button class="bag-button" aria-label="Open bag">Bag <span class="bag-count">0</span></button>
-  </header>
-  <aside class="menu-panel" aria-hidden="true"><button class="close-menu" aria-label="Close menu">×</button><p class="eyebrow">MAISON AMIRA</p><a href="#maison">The Maison</a><a href="#oils">The Oils</a><a href="#argan">Our Argan</a><a href="#ritual">The Ritual</a><a href="#private">Private Release</a><p class="menu-note">Moroccan beauty rituals,<br>reimagined with care.</p></aside>
-
+  <canvas id="confetti" aria-hidden="true"></canvas>
   <main>
-    <section class="hero">
-      <div class="hero-image" role="img" aria-label="Maison Amira amber argan oil bottles and cream packaging"></div>
-      <div class="hero-shade"></div>
-      <div class="hero-copy"><p class="eyebrow light">MOROCCAN BEAUTY RITUALS</p><h1>Pure by nature.<br><em>Luxurious</em> by tradition.</h1><a class="text-link light" href="#oils">Discover the ritual <span>↘</span></a></div>
-      <div class="hero-foot"><span>EST. IN REVERENCE</span><span>01 / 05</span></div>
-    </section>
-
-    <section class="manifesto section" id="maison">
-      <p class="eyebrow reveal">LA MAISON</p><div class="manifesto-grid"><h2 class="reveal">Born from Morocco.<br>Created as <em>a ritual.</em></h2><div class="reveal"><p>For generations, argan oil has been held close: a small, precious gesture for hair and skin. Maison Amira brings that gesture into the present.</p><p>Our first collection is an invitation to slow down—where provenance, texture and the object itself are treated with equal care.</p><a class="text-link" href="#argan">Read our story <span>↘</span></a></div></div>
-    </section>
-
-    <section class="products section" id="oils"><div class="section-head"><p class="eyebrow">THE FIRST COLLECTION</p><p>01 — 02</p></div>
-      <div class="product-grid">
-        <article class="product-card reveal"><div class="product-visual pure"><span class="product-num">01</span><span class="card-badge">HAIR + BODY</span></div><div class="product-info"><p class="eyebrow">L’HUILE PURE</p><h3>Pure Argan Oil</h3><p class="product-meta">50 ml · A considered essential for hair and body.</p><div class="card-actions"><button class="add-bag" data-product="L’Huile Pure">Add to bag <span>+</span></button><button class="details" data-open-product="pure">Details</button></div></div></article>
-        <article class="product-card reveal"><div class="product-visual parfum"><span class="product-num">02</span><span class="card-badge">BODY OIL</span></div><div class="product-info"><p class="eyebrow">L’HUILE PARFUMÉE</p><h3>Scented Body Oil</h3><p class="product-meta">50 ml · Argan oil, composed for the body.</p><div class="notes" aria-label="Concept fragrance variants"><button class="active">Rose</button><button>Amber</button><button>Citrus</button></div><div class="card-actions"><button class="add-bag" data-product="L’Huile Parfumée — Rose">Add to bag <span>+</span></button><button class="details" data-open-product="parfum">Details</button></div></div></article>
+    <section class="hero" aria-labelledby="title">
+      <span class="glow" aria-hidden="true"></span><span class="sparkle s1" aria-hidden="true">✦</span><span class="sparkle s2" aria-hidden="true">✧</span><span class="sparkle s3" aria-hidden="true">✧</span><span class="sparkle s4" aria-hidden="true">✦</span>
+      <div class="hero-inner">
+        <p class="eyebrow">A little birthday page, made for you</p>
+        <h1 id="title">For <em>Amira</em></h1>
+        <p class="hero-subtitle">One very lovely human.<br>One very good reason to celebrate.</p>
+        <p class="hero-date">16 October · your day</p>
+        <a class="button" href="#note">Open your birthday note <span aria-hidden="true">↓</span></a>
       </div>
-      <p class="concept-note">COLLECTION CONCEPT · PRICING TO BE ANNOUNCED</p>
+      <span class="scroll-note">Made with care, just for you</span>
     </section>
 
-    <section class="origin" id="argan"><div class="origin-art" role="img" aria-label="Close view of amber Maison Amira argan oil bottle"></div><div class="origin-copy"><p class="eyebrow light">THE ORIGIN</p><h2>From a tree<br>that knows <em>patience.</em></h2><p>Argan belongs to Morocco—not as a trend, but as a living beauty tradition. We honour its quiet, enduring place in the ritual.</p><a class="text-link light" href="#ritual">The power of argan <span>↘</span></a></div></section>
+    <section class="section" id="note">
+      <article class="note">
+        <p class="eyebrow">Dear Amira</p>
+        <h2>A little note <em>for you.</em></h2>
+        <div class="note-copy">
+          <p>I’m so glad we get to share all these conversations and little moments. Somehow the ordinary parts of a day feel brighter when I get to share them with you.</p>
+          <p>You’re such a sweet, thoughtful person, and I hope you know how much that means to the people around you. I hope this next year brings you laughter, good days, big wins, and plenty of reasons to feel proud of yourself.</p>
+          <p>Happy birthday, Amira. I’m really glad you’re in my life.</p>
+        </div>
+        <span class="signoff">With lots of love and appreciation</span>
+      </article>
+    </section>
 
-    <section class="power section"><p class="eyebrow reveal">THE POWER OF ARGAN</p><div class="power-grid"><article class="reveal"><span>01</span><h3>Nourish</h3><p>A naturally rich oil used as part of a nourishing beauty ritual.</p></article><article class="reveal"><span>02</span><h3>Soften</h3><p>Designed to leave hair and skin feeling beautifully conditioned.</p></article><article class="reveal"><span>03</span><h3>Ritual</h3><p>A simple everyday gesture, made intentional.</p></article><article class="reveal"><span>04</span><h3>Pure</h3><p>L’Huile Pure is conceived with argan oil alone.</p></article></div></section>
+    <section class="section future" aria-labelledby="future-title">
+      <div class="future-copy">
+        <p class="eyebrow">To the future Dr Amira</p>
+        <h2 id="future-title">Big heart.<br><em>Steady hands.</em></h2>
+        <p>Your dream of becoming a surgeon is a pretty incredible one. It takes a lot of care and determination—and you already have so much of the sweetness and heart that make people feel safe with you.</p>
+        <p class="prescription">Birthday prescription: cake, a great playlist, a little celebration, and absolutely no studying today. Doctor’s orders (mine, for the next 24 hours).</p>
+      </div>
+      <div class="seal" role="img" aria-label="A playful honorary badge for future doctor Amira">
+        <div class="seal-inner"><span class="small">Honorary birthday badge</span><strong>Dr.<br>Amira</strong><em>in the making</em></div>
+      </div>
+    </section>
 
-    <section class="ritual section" id="ritual"><div class="ritual-title"><p class="eyebrow">THE AMIRA RITUAL</p><h2>Four moments<br>of <em>return.</em></h2></div><ol><li class="reveal"><span>01</span><div><h3>Warm</h3><p>Place a few drops in your palms.</p></div></li><li class="reveal"><span>02</span><div><h3>Apply</h3><p>Press into lengths, ends or damp skin.</p></div></li><li class="reveal"><span>03</span><div><h3>Breathe</h3><p>Let the gesture become yours.</p></div></li><li class="reveal"><span>04</span><div><h3>Glow</h3><p>Carry the softness with you.</p></div></li></ol></section>
+    <section class="section soundtrack" aria-labelledby="soundtrack-title">
+      <p class="eyebrow">Cue the birthday soundtrack</p>
+      <h2 id="soundtrack-title">A little bit <em>dramatic.</em><br>A lot iconic.</h2>
+      <p class="soundtrack-intro">For the main character of October 16:</p>
+      <div class="records" aria-label="Artists for Amira's birthday soundtrack">
+        <span class="record">The Weeknd</span><span class="record">Arctic Monkeys</span><span class="record">The Neighbourhood</span><span class="record">Chase Atlantic</span><span class="record">Nirvana</span><span class="record">Lana Del Rey</span>
+      </div>
+      <p class="music-note">Now please enjoy your birthday like the lead in your own music video.</p>
+    </section>
 
-    <section class="quote" id="journal"><p class="eyebrow light">A NOTE FROM THE MAISON</p><blockquote>“Beauty,<br><em>inherited.</em>”</blockquote><p class="quote-end">A ritual from Morocco, reimagined for today.</p></section>
-
-    <section class="private section" id="private"><p class="eyebrow reveal">PRIVATE RELEASE</p><div class="private-grid"><h2 class="reveal">Be among<br>the <em>first.</em></h2><div class="reveal"><p>Maison Amira is preparing its first collection. Join the private list for an early glimpse of what is to come.</p><form class="signup-form"><label class="sr-only" for="email">Email address</label><input id="email" type="email" placeholder="Your email address" required><button type="submit">Join the private list <span>↗</span></button></form><p class="form-message" aria-live="polite"></p></div></div></section>
+    <section class="closing">
+      <p class="eyebrow">One more thing</p>
+      <blockquote>Here’s to more conversations, more laughter, and more little moments I’m <em>glad we get to share.</em></blockquote>
+      <p class="eyebrow">Happy birthday, Amira · 16 October</p>
+      <button class="button" id="wish-button" type="button">Make a little birthday wish <span aria-hidden="true">✦</span></button>
+    </section>
   </main>
-  <footer><a class="wordmark" href="#top"><small>MAISON</small><strong>AMIRA</strong></a><p>Moroccan Beauty Rituals</p><div><a href="#maison">The Maison</a><a href="#oils">The Oils</a><a href="#private">Contact</a></div><small>Made with reverence for Moroccan beauty traditions.</small></footer>
-  <aside class="cart" aria-hidden="true"><div class="cart-top"><p class="eyebrow">YOUR BAG</p><button class="close-cart" aria-label="Close bag">×</button></div><div class="cart-items"><p class="empty">Your bag is waiting for its ritual.</p></div><div class="cart-bottom"><p>Online ordering is launching soon.</p><a href="#private" class="cart-cta">Join the private list</a></div></aside><div class="scrim"></div>
-  <dialog class="product-dialog"><button class="dialog-close" aria-label="Close details">×</button><p class="eyebrow dialog-label"></p><h2 class="dialog-title"></h2><p class="dialog-copy"></p><div class="detail-list"><span>THE OIL</span><span>THE RITUAL</span><span>HOW TO USE</span></div></dialog>
-  <script src="main.js"></script>
-</body></html>
+  <footer>Made for Amira, with a little burgundy, a little sparkle, and a lot of care.</footer>
+  <script>
+    (() => {
+      const button = document.getElementById('wish-button');
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let frame = 0;
+      function resize() { canvas.width = window.innerWidth * devicePixelRatio; canvas.height = window.innerHeight * devicePixelRatio; ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); }
+      window.addEventListener('resize', resize); resize();
+      button.addEventListener('click', () => {
+        if (reduced) { button.textContent = 'Wish made. Happy birthday, Amira! ✦'; return; }
+        const colors = ['#cba86b', '#d89a9b', '#9f3344', '#fbf2e7'];
+        const pieces = Array.from({ length: 110 }, () => ({ x: Math.random() * innerWidth, y: -20 - Math.random() * innerHeight * .45, vx: (Math.random() - .5) * 3, vy: 2 + Math.random() * 4, size: 3 + Math.random() * 5, color: colors[Math.floor(Math.random() * colors.length)], spin: Math.random() * 6 }));
+        cancelAnimationFrame(frame);
+        let ticks = 0;
+        function draw() {
+          ctx.clearRect(0, 0, innerWidth, innerHeight);
+          pieces.forEach(p => { p.x += p.vx; p.y += p.vy; p.spin += .08; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.spin); ctx.fillStyle = p.color; ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * .65); ctx.restore(); });
+          if (++ticks < 135) frame = requestAnimationFrame(draw); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+        }
+        draw(); button.textContent = 'Wish made. Happy birthday, Amira! ✦';
+      });
+    })();
+  </script>
+</body>
+</html>
