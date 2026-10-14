@@ -85,6 +85,30 @@
     .seal em { display: block; margin-top: .8rem; color: var(--rose); font: italic 1.1rem var(--serif); }
     .prescription { position: relative; display: inline-block; overflow: hidden; margin-top: .8rem; padding: .85rem 1rem; border-left: 2px solid var(--gold); color: var(--wine); background: #fff9f050; font-family: var(--serif); font-style: italic; }
     .prescription::after { content: ""; position: absolute; top: -30%; bottom: -30%; left: -35%; width: 20%; background: linear-gradient(90deg, transparent, #fffaf399, transparent); transform: skewX(-20deg); animation: prescription-shine 5s ease-in-out 1s infinite; }
+    .adventures { padding: clamp(4rem, 8vw, 7rem) 1.4rem; background: linear-gradient(160deg, #fffaf3 0%, #f8ece3 52%, #f2e1d7 100%); }
+    .adventures-heading { position: relative; z-index: 1; width: min(100%, 760px); margin: 0 auto 2.8rem; text-align: center; }
+    .adventures-heading .eyebrow { color: var(--red); }
+    .adventures-heading h2 { color: var(--wine); }
+    .adventures-heading p { width: min(100%, 590px); margin: 0 auto; color: #705559; font: 1.2rem/1.7 var(--serif); }
+    .adventures-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.5vw, 1.7rem); width: min(100%, 1080px); margin: 0 auto; }
+    .adventure-card { overflow: hidden; border: 1px solid #cba86b55; border-radius: 24px; background: #fffaf5; box-shadow: 0 14px 40px #4b102510; transition: transform .45s cubic-bezier(.2,.75,.25,1), box-shadow .45s ease; }
+    .adventure-card:nth-child(2) { transition-delay: .12s; }
+    .adventure-card:hover { transform: translateY(-8px); box-shadow: 0 24px 52px #4b10251c; }
+    .adventure-card.reveal.visible:hover { transform: translateY(-8px); }
+    .adventure-art { display: block; width: 100%; height: auto; aspect-ratio: 800 / 330; object-fit: cover; transition: transform .8s cubic-bezier(.2,.75,.25,1); }
+    .adventure-card:hover .adventure-art { transform: scale(1.035); }
+    .adventure-copy { padding: clamp(1.2rem, 3vw, 1.8rem); }
+    .adventure-copy .eyebrow { margin: 0; color: var(--red); font-size: .62rem; }
+    .adventure-copy h3 { margin: .7rem 0 .55rem; color: var(--wine); font: 400 clamp(1.8rem, 3vw, 2.35rem)/1.08 var(--serif); letter-spacing: -.025em; }
+    .adventure-copy p:last-child { max-width: 450px; margin: 0; color: #705559; font: 1.06rem/1.7 var(--serif); }
+    .city-sun { transform-box: fill-box; transform-origin: center; animation: sun-breathe 5s ease-in-out infinite; }
+    .city-water { stroke-dasharray: 16 20; animation: water-glide 8s linear infinite; }
+    .city-star { transform-box: fill-box; transform-origin: center; animation: twinkle 2.7s ease-in-out infinite alternate; }
+    .city-star.delay { animation-delay: 1.2s; }
+    .alpaca-body { transform-box: fill-box; transform-origin: center bottom; animation: alpaca-bob 4s ease-in-out infinite; }
+    .alpaca-ear-left { transform-box: fill-box; transform-origin: 50% 100%; animation: alpaca-ear 3.8s ease-in-out infinite; }
+    .alpaca-ear-right { transform-box: fill-box; transform-origin: 50% 100%; animation: alpaca-ear 4.4s ease-in-out .3s infinite; }
+    .alpaca-star { transform-box: fill-box; transform-origin: center; animation: twinkle 2.2s ease-in-out infinite alternate; }
     .closing { position: relative; isolation: isolate; overflow: hidden; padding: 5rem 1.5rem 5.5rem; color: var(--cream); background: radial-gradient(ellipse at 50% 120%, #682238 0%, var(--wine-dark) 66%); text-align: center; }
     .closing::before, .closing::after { content: ""; position: absolute; z-index: -1; left: 50%; top: 55%; width: min(74vw, 730px); aspect-ratio: 1; border: 1px solid #cba86b24; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; animation: closing-ring 26s linear infinite; }
     .closing::after { width: min(58vw, 570px); border-style: dashed; animation-duration: 38s; animation-direction: reverse; }
@@ -143,6 +167,10 @@
     @keyframes footer-glint { 0%, 30% { left: -45%; } 70%, 100% { left: 110%; } }
     @keyframes ornament-drift { 0%, 100% { transform: translateY(0) rotate(-12deg); opacity: .48; } 50% { transform: translateY(-12px) rotate(14deg); opacity: .95; } }
     @keyframes hero-rise { to { opacity: 1; transform: translateY(0); } }
+    @keyframes sun-breathe { 0%, 100% { transform: scale(.97); opacity: .82; } 50% { transform: scale(1.06); opacity: 1; } }
+    @keyframes water-glide { to { stroke-dashoffset: -144; } }
+    @keyframes alpaca-bob { 0%, 100% { transform: translateY(0) rotate(-.5deg); } 50% { transform: translateY(-5px) rotate(.5deg); } }
+    @keyframes alpaca-ear { 0%, 80%, 100% { transform: rotate(0); } 88% { transform: rotate(-7deg); } 94% { transform: rotate(4deg); } }
     @keyframes orbit { to { transform: translate(-50%, -50%) rotate(360deg); } }
     @keyframes halo { from { opacity: .45; transform: translate(-50%, -50%) scale(.82); } to { opacity: .9; transform: translate(-50%, -50%) scale(1.12); } }
     @keyframes twinkle { from { opacity: .36; transform: scale(.75) rotate(-18deg); } to { opacity: 1; transform: scale(1.2) rotate(18deg); } }
@@ -158,6 +186,8 @@
       .future-copy, .seal { justify-self: center; }
       .future p { margin-left: auto; margin-right: auto; }
       .prescription { text-align: left; }
+      .adventures-grid { grid-template-columns: 1fr; width: min(100%, 560px); }
+      .adventures-heading { margin-bottom: 2rem; }
       .ornament.o1 { left: 7%; } .ornament.o2 { right: 7%; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .reveal, .note-copy p, .signoff, .hero-inner > * { opacity: 1; transform: none; } }
@@ -208,6 +238,98 @@
       </div>
       <div class="seal reveal" role="img" aria-label="A playful honorary badge for future doctor Amira">
         <div class="seal-inner"><span class="small">Honorary birthday badge</span><strong>Dr.<br>Amira</strong><em>in the making</em></div>
+      </div>
+    </section>
+
+    <section class="section adventures" aria-labelledby="adventures-title">
+      <header class="adventures-heading reveal">
+        <p class="eyebrow">Little plans, lovely people</p>
+        <h2 id="adventures-title">Some things to look forward <em>to.</em></h2>
+        <p>I’m glad we get to share all these little moments. And there are still a few lovely ones waiting for us.</p>
+      </header>
+      <div class="adventures-grid">
+        <article class="adventure-card reveal">
+          <svg class="adventure-art" viewBox="0 0 800 330" role="img" aria-label="A warm illustrated Heidelberg skyline, castle, old bridge, and river at sunset">
+            <defs>
+              <linearGradient id="heidelberg-sky" x2="0" y2="1"><stop stop-color="#edc1ac"/><stop offset=".62" stop-color="#f7dfc7"/><stop offset="1" stop-color="#d79a82"/></linearGradient>
+              <linearGradient id="heidelberg-water" x2="0" y2="1"><stop stop-color="#80505a"/><stop offset="1" stop-color="#4b3447"/></linearGradient>
+              <linearGradient id="heidelberg-sun" x2="0" y2="1"><stop stop-color="#fff0c7"/><stop offset="1" stop-color="#d9a574"/></linearGradient>
+            </defs>
+            <rect width="800" height="330" fill="url(#heidelberg-sky)"/>
+            <circle class="city-sun" cx="645" cy="78" r="38" fill="url(#heidelberg-sun)" opacity=".9"/>
+            <path d="M0 188Q120 142 245 180T500 169T800 174V260H0Z" fill="#a97b79" opacity=".45"/>
+            <path d="M0 218Q145 168 300 207T570 189T800 201V270H0Z" fill="#76545f" opacity=".7"/>
+            <path d="M0 238Q130 214 265 230T520 219T800 230V330H0Z" fill="url(#heidelberg-water)"/>
+            <g fill="#653d47">
+              <path d="M70 179V114h35V94h24v20h24v65z"/><path d="M112 114l29-30 28 30z"/>
+              <path d="M159 179V130h28v-28h32v28h22v51z"/><path d="M185 130l18-25 19 25z"/>
+              <path d="M93 114V88h9V63h13v25h9v26z"/><path d="M89 89l19-25 20 25z"/>
+              <path d="M239 211v-42h34v-21h25v21h28v42z"/><path d="M270 169l16-21 17 21z"/>
+              <path d="M329 216v-55h33v-20h24v20h28v55z"/><path d="M357 161l17-22 17 22z"/>
+              <path d="M415 212v-39h27v-24h29v24h22v39z"/><path d="M444 173l13-19 15 19z"/>
+              <path d="M502 216v-49h37v-17h26v17h31v49z"/><path d="M533 167l18-22 18 22z"/>
+              <path d="M609 217v-42h29v-22h25v22h28v42z"/><path d="M637 175l14-19 15 19z"/>
+              <path d="M697 216v-57h32v-18h25v18h23v57z"/><path d="M722 159l18-22 18 22z"/>
+            </g>
+            <g fill="#f3cfae" opacity=".75">
+              <path d="M266 183h6v10h-6zM286 183h6v10h-6zM348 176h6v10h-6zM374 176h6v10h-6zM428 185h6v9h-6zM456 185h6v9h-6zM514 178h6v9h-6zM544 178h6v9h-6zM619 185h6v9h-6zM647 185h6v9h-6zM707 173h6v9h-6zM737 173h6v9h-6z"/>
+            </g>
+            <g fill="none" stroke="#edd0b1" stroke-width="3" opacity=".47">
+              <path class="city-water" d="M22 275q38-9 76 0t76 0t76 0t76 0t76 0t76 0t76 0t76 0t76 0t76 0"/>
+              <path class="city-water" d="M-15 301q38-8 76 0t76 0t76 0t76 0t76 0t76 0t76 0t76 0t76 0t76 0" style="animation-delay:-3s"/>
+            </g>
+            <g fill="#68434b" stroke="#f0cba6" stroke-width="3">
+              <path d="M174 223h461v19H174z"/>
+              <path d="M196 240h40v37h-40zM290 240h40v37h-40zM384 240h40v37h-40zM478 240h40v37h-40zM572 240h40v37h-40z"/>
+              <path d="M174 222l18-16h425l18 16z"/>
+              <path d="M183 198h22v-31h-22zM589 198h22v-31h-22z"/>
+              <path d="M178 167l16-19 16 19zM584 167l16-19 16 19z"/>
+            </g>
+            <g fill="#fff1d6">
+              <path class="city-star" d="M552 62l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/>
+              <path class="city-star delay" d="M720 125l3 6 6 3-6 3-3 6-3-6-6-3 6-3z"/>
+            </g>
+          </svg>
+          <div class="adventure-copy">
+            <p class="eyebrow">A little plan, just ours</p>
+            <h3>Heidelberg, together.</h3>
+            <p>For the day we finally get to see Heidelberg side by side. I’m already glad it’s one of the moments we still have to look forward to.</p>
+          </div>
+        </article>
+
+        <article class="adventure-card reveal">
+          <svg class="adventure-art" viewBox="0 0 800 330" role="img" aria-label="A cute, fluffy alpaca with a burgundy scarf beneath tiny golden stars">
+            <defs>
+              <linearGradient id="alpaca-bg" x2="0" y2="1"><stop stop-color="#f6dfd0"/><stop offset="1" stop-color="#eac5bc"/></linearGradient>
+              <linearGradient id="alpaca-wool" x2=".8" y2="1"><stop stop-color="#fff9ee"/><stop offset="1" stop-color="#e7d2bd"/></linearGradient>
+            </defs>
+            <rect width="800" height="330" fill="url(#alpaca-bg)"/>
+            <circle cx="405" cy="166" r="125" fill="#fff5e8" opacity=".28"/>
+            <circle class="alpaca-star" cx="234" cy="87" r="4" fill="#b17c55"/><path class="alpaca-star" d="M577 80l6 13 13 6-13 6-6 13-6-13-13-6 13-6z" fill="#cba86b"/>
+            <path d="M167 277q233-27 466 0" fill="none" stroke="#b27b70" stroke-width="3" opacity=".3"/>
+            <g class="alpaca-body">
+              <path d="M295 262v-49q0-13 13-13t13 13v49zM362 266v-49q0-13 13-13t13 13v49zM474 266v-49q0-13 13-13t13 13v49zM537 262v-49q0-13 13-13t13 13v49z" fill="#b88f78"/>
+              <path d="M276 216q-8-21 9-35q-8-20 12-32q0-22 22-27q8-23 33-20q14-22 38-10q17-21 40-6q21-14 39 5q25-8 37 15q25 1 30 26q21 13 12 35q16 18 1 37q9 20-10 34q-4 28-35 28H316q-28 0-40-22q-14-8 0-23z" fill="url(#alpaca-wool)" stroke="#d8bd9f" stroke-width="3"/>
+              <path d="M366 196q8-30 10-66l3-50q2-26 25-29q22-3 29 20l8 50q8 39 25 71z" fill="url(#alpaca-wool)" stroke="#d8bd9f" stroke-width="3"/>
+              <path class="alpaca-ear-left" d="M375 83q-22-24-17-51q1-7 8-3q25 15 32 43z" fill="#f8ead9" stroke="#d8bd9f" stroke-width="3"/>
+              <path class="alpaca-ear-right" d="M423 72q14-30 38-37q7-2 7 6q-1 29-25 48z" fill="#f8ead9" stroke="#d8bd9f" stroke-width="3"/>
+              <path d="M382 45q16-19 31-7q13-22 28-5q19-4 21 16q17 10 7 26q-6 17-26 20l-48-4q-23-6-20-26q-8-13 7-20z" fill="#fff8ec" stroke="#d8bd9f" stroke-width="3"/>
+              <ellipse cx="395" cy="80" rx="4.5" ry="6" fill="#593b3d"/><ellipse cx="438" cy="79" rx="4.5" ry="6" fill="#593b3d"/>
+              <ellipse cx="388" cy="93" rx="10" ry="6" fill="#dd9a9b" opacity=".48"/><ellipse cx="446" cy="93" rx="10" ry="6" fill="#dd9a9b" opacity=".48"/>
+              <path d="M402 94q14 13 28 0q-2 19-14 19q-12 0-14-19z" fill="#d5a58e"/><path d="M415 110q-5 8-11 3m11-3q5 8 11 3" fill="none" stroke="#785659" stroke-width="2" stroke-linecap="round"/>
+              <path d="M369 154q47 15 91 0l7 16q-49 19-103 0z" fill="#7e263d"/><path d="M407 167l-10 31 18-7 9 11 7-32" fill="#9f3344" stroke="#7e263d" stroke-width="2"/>
+              <circle cx="416" cy="180" r="5" fill="#d8b875"/>
+              <path d="M307 231q20 11 39 0M482 233q19 10 37-1" fill="none" stroke="#d2bba5" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <path class="alpaca-star" d="M597 206l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#b17c55"/>
+            <path class="alpaca-star" d="M209 199l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" fill="#cba86b" style="animation-delay:-1s"/>
+          </svg>
+          <div class="adventure-copy">
+            <p class="eyebrow">Honorary adventure buddy</p>
+            <h3>One alpaca, coming up.</h3>
+            <p>Because every future adventure needs a fluffy mascot. Consider this little one officially invited.</p>
+          </div>
+        </article>
       </div>
     </section>
 
