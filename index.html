@@ -101,7 +101,7 @@
     .intro-screen.dismissed { opacity: 0; visibility: hidden; pointer-events: none; }
     .now-playing { position: fixed; z-index: 8; right: 1rem; bottom: 1rem; width: min(360px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid #cba86b99; border-radius: 13px; color: #fff6e9; background: #260914ed; box-shadow: 0 12px 36px #16050dbb; animation: player-appear .5s ease-out both; }
     .now-playing[hidden] { display: none; }
-    .now-playing iframe { display: block; width: 100%; height: 200px; border: 0; background: #18050c; }
+    .now-playing audio { display: block; width: calc(100% - 1.2rem); height: 42px; margin: .7rem .6rem .4rem; accent-color: #cba86b; }
     .now-playing p { margin: .65rem .8rem .8rem; font-size: .72rem; letter-spacing: .02em; line-height: 1.5; }
     .now-playing a { color: #e8c98d; }
     @keyframes slow-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -124,7 +124,6 @@
       .future p { margin-left: auto; margin-right: auto; }
       .prescription { text-align: left; }
       .now-playing { right: .65rem; bottom: .65rem; width: min(360px, calc(100vw - 1.3rem)); }
-      .now-playing iframe { height: 200px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
   </style>
@@ -182,8 +181,8 @@
     </section>
   </main>
   <aside class="now-playing" id="now-playing" aria-label="Birthday soundtrack" hidden>
-    <iframe id="song-player" title="The Weeknd — Blinding Lights, official music video" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
-    <p>Birthday soundtrack: The Weeknd · “Blinding Lights” · <a href="https://www.youtube.com/watch?v=4NRXx6U8ABQ" target="_blank" rel="noopener noreferrer">Open on YouTube</a></p>
+    <audio id="song-player" controls preload="none" aria-label="The Weeknd — Blinding Lights"></audio>
+    <p>Birthday soundtrack: The Weeknd · “Blinding Lights” · <a href="https://www.youtube.com/watch?v=4NRXx6U8ABQ" target="_blank" rel="noopener noreferrer">Official video</a></p>
   </aside>
   <footer>Made for Amira, with a little burgundy, a little sparkle, and a lot of care.</footer>
   <script>
@@ -210,16 +209,9 @@
         content.removeAttribute('inert');
         content.removeAttribute('aria-hidden');
         nowPlaying.hidden = false;
-        const playerParameters = new URLSearchParams({
-          autoplay: '1',
-          controls: '1',
-          playsinline: '1',
-          rel: '0',
-          enablejsapi: '1',
-          origin: window.location.origin,
-          widget_referrer: window.location.href
-        });
-        player.src = `https://www.youtube-nocookie.com/embed/4NRXx6U8ABQ?${playerParameters.toString()}`;
+        player.src = new URL('assets/blinding-lights.mp3', document.baseURI).href;
+        player.volume = 0.45;
+        player.play().catch(() => { player.controls = true; });
         document.body.classList.add('opened');
         window.setTimeout(() => {
           intro.classList.add('dismissed');
