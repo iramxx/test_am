@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4b1025">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="description" content="A little birthday note for Amira, with love and a little sparkle.">
   <title>For Amira, with love · 16 October</title>
   <style>
@@ -94,16 +95,11 @@
     .intro-screen.opening .halo { animation: halo-burst 1.35s ease-out forwards; }
     .intro-screen.opening .intro-button { animation: button-burst .72s ease-in forwards; }
     .intro-screen.dismissed { opacity: 0; visibility: hidden; pointer-events: none; }
-    .now-playing { position: fixed; z-index: 8; right: 1rem; bottom: 1rem; display: flex; align-items: center; gap: .75rem; width: min(315px, calc(100vw - 2rem)); padding: .75rem; border: 1px solid #cba86b99; border-radius: 13px; color: #fff6e9; background: #260914ed; box-shadow: 0 12px 36px #16050dbb; animation: player-appear .5s ease-out both; }
+    .now-playing { position: fixed; z-index: 8; right: 1rem; bottom: 1rem; width: min(360px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid #cba86b99; border-radius: 13px; color: #fff6e9; background: #260914ed; box-shadow: 0 12px 36px #16050dbb; animation: player-appear .5s ease-out both; }
     .now-playing[hidden] { display: none; }
-    .music-mark { display: grid; flex: 0 0 auto; place-items: center; width: 42px; aspect-ratio: 1; border: 1px solid #d8b875a8; border-radius: 50%; color: #f3dcae; background: radial-gradient(circle, #9e3c52 0 16%, #35101e 18% 100%); box-shadow: 0 0 20px #d5537238; font-size: 1.1rem; animation: vinyl-roll 7s linear infinite; }
-    .now-playing.paused .music-mark { animation-play-state: paused; opacity: .65; }
-    .music-label { flex: 1; min-width: 0; }
-    .music-label strong, .music-label span { display: block; }
-    .music-label strong { margin-bottom: .2rem; font: 600 .72rem var(--sans); letter-spacing: .04em; }
-    .music-label span { color: #d6bfad; font-size: .66rem; }
-    .music-toggle { padding: .52rem .65rem; border: 1px solid #cba86b8c; border-radius: 99px; color: #fff2dd; background: transparent; font: 500 .68rem var(--sans); cursor: pointer; }
-    .music-toggle:hover, .music-toggle:focus-visible { color: #35101c; background: #e4c995; outline: none; }
+    .now-playing iframe { display: block; width: 100%; height: 200px; border: 0; background: #18050c; }
+    .now-playing p { margin: .65rem .8rem .8rem; font-size: .72rem; letter-spacing: .02em; line-height: 1.5; }
+    .now-playing a { color: #e8c98d; }
     @keyframes orbit { to { transform: translate(-50%, -50%) rotate(360deg); } }
     @keyframes halo { from { opacity: .45; transform: translate(-50%, -50%) scale(.82); } to { opacity: .9; transform: translate(-50%, -50%) scale(1.12); } }
     @keyframes twinkle { from { opacity: .36; transform: scale(.75) rotate(-18deg); } to { opacity: 1; transform: scale(1.2) rotate(18deg); } }
@@ -112,7 +108,6 @@
     @keyframes halo-burst { to { opacity: 0; transform: translate(-50%, -50%) scale(5); filter: blur(70px); } }
     @keyframes button-burst { to { opacity: 0; transform: scale(.68); filter: blur(10px); } }
     @keyframes player-appear { from { opacity: 0; transform: translateY(18px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-    @keyframes vinyl-roll { to { transform: rotate(360deg); } }
     @media (max-width: 700px) {
       .hero { min-height: 88svh; }
       .s1 { left: 7%; } .s2 { right: 8%; } .s3 { left: 10%; } .s4 { right: 9%; }
@@ -120,7 +115,8 @@
       .future-copy, .seal { justify-self: center; }
       .future p { margin-left: auto; margin-right: auto; }
       .prescription { text-align: left; }
-      .now-playing { right: .65rem; bottom: .65rem; width: min(270px, calc(100vw - 1.3rem)); }
+      .now-playing { right: .65rem; bottom: .65rem; width: min(360px, calc(100vw - 1.3rem)); }
+      .now-playing iframe { height: 200px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
   </style>
@@ -187,9 +183,8 @@
     </section>
   </main>
   <aside class="now-playing" id="now-playing" aria-label="Birthday soundtrack" hidden>
-    <span class="music-mark" aria-hidden="true">♪</span>
-    <span class="music-label"><strong>Original birthday score</strong><span>Made just for Amira</span></span>
-    <button class="music-toggle" id="music-toggle" type="button" aria-pressed="true">Pause</button>
+    <iframe id="song-player" title="Chris Grey — Let The World Burn, official music video" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+    <p>Now playing: Chris Grey · “Let The World Burn” · <a href="https://www.youtube.com/watch?v=fdJrSjMgPFE" target="_blank" rel="noopener noreferrer">Open on YouTube</a></p>
   </aside>
   <footer>Made for Amira, with a little burgundy, a little sparkle, and a lot of care.</footer>
   <script>
@@ -198,98 +193,9 @@
       const openButton = document.getElementById('open-gift');
       const content = document.getElementById('birthday-content');
       const nowPlaying = document.getElementById('now-playing');
-      const musicToggle = document.getElementById('music-toggle');
+      const player = document.getElementById('song-player');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let didOpen = false;
-      let musicContext = null;
-      let musicMaster = null;
-      let musicTimer = null;
-      let musicPlaying = false;
-      const beat = 60 / 112;
-      const bar = beat * 4;
-      const loopLength = bar * 4;
-      const chords = [
-        [146.83, 220, 261.63, 329.63, 349.23],
-        [116.54, 174.61, 220, 293.66, 349.23],
-        [174.61, 261.63, 349.23, 392, 440],
-        [130.81, 196, 293.66, 349.23, 392]
-      ];
-      const melody = [
-        [880,0],[698.46,1],[587.33,2],[698.46,3],
-        [698.46,4],[587.33,5],[523.25,6],[587.33,7],
-        [1046.5,8],[880,9],[783.99,10],[880,11],
-        [783.99,12],[659.25,13],[587.33,14],[1046.5,15]
-      ];
-
-      function createMusicContext() {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContextClass) return false;
-        if (!musicContext) {
-          musicContext = new AudioContextClass();
-          musicMaster = musicContext.createGain();
-          musicMaster.gain.value = 0.23;
-          musicMaster.connect(musicContext.destination);
-        }
-        return true;
-      }
-
-      function addTone(frequency, startAt, duration, type, volume, cutoff, attack) {
-        const oscillator = musicContext.createOscillator();
-        const filter = musicContext.createBiquadFilter();
-        const envelope = musicContext.createGain();
-        oscillator.type = type;
-        oscillator.frequency.setValueAtTime(frequency, startAt);
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(cutoff, startAt);
-        envelope.gain.setValueAtTime(0.0001, startAt);
-        envelope.gain.exponentialRampToValueAtTime(volume, startAt + attack);
-        envelope.gain.exponentialRampToValueAtTime(Math.max(volume * 0.48, 0.0002), startAt + duration * 0.66);
-        envelope.gain.exponentialRampToValueAtTime(0.0001, startAt + duration);
-        oscillator.connect(filter);
-        filter.connect(envelope);
-        envelope.connect(musicMaster);
-        oscillator.start(startAt);
-        oscillator.stop(startAt + duration + 0.03);
-      }
-
-      function scheduleMusicLoop() {
-        const start = musicContext.currentTime + 0.08;
-        chords.forEach((chord, index) => {
-          const chordStart = start + index * bar;
-          chord.forEach((frequency, toneIndex) => {
-            addTone(frequency, chordStart, bar * 1.04, 'triangle', toneIndex === 0 ? 0.11 : 0.045, 1050, 0.42);
-          });
-          addTone(chord[0] / 2, chordStart, bar * 0.94, 'sine', 0.12, 360, 0.5);
-        });
-        melody.forEach(([frequency, beatAt], index) => {
-          const noteStart = start + beatAt * beat;
-          addTone(frequency, noteStart, beat * (index % 2 === 0 ? 0.82 : 0.65), 'sine', 0.095, 2500, 0.025);
-          if (index % 4 === 0) addTone(frequency * 2, noteStart, beat * 0.34, 'sine', 0.025, 3400, 0.01);
-        });
-      }
-
-      function playMusic() {
-        if (!createMusicContext()) return;
-        musicContext.resume();
-        if (musicTimer) window.clearInterval(musicTimer);
-        scheduleMusicLoop();
-        musicTimer = window.setInterval(scheduleMusicLoop, loopLength * 1000);
-        musicPlaying = true;
-        nowPlaying.classList.remove('paused');
-        musicToggle.textContent = 'Pause';
-        musicToggle.setAttribute('aria-pressed', 'true');
-      }
-
-      function pauseMusic() {
-        if (musicTimer) window.clearInterval(musicTimer);
-        musicTimer = null;
-        if (musicContext) musicContext.suspend();
-        musicPlaying = false;
-        nowPlaying.classList.add('paused');
-        musicToggle.textContent = 'Play';
-        musicToggle.setAttribute('aria-pressed', 'false');
-      }
-
       openButton.addEventListener('click', () => {
         if (didOpen) return;
         didOpen = true;
@@ -297,7 +203,16 @@
         content.removeAttribute('inert');
         content.removeAttribute('aria-hidden');
         nowPlaying.hidden = false;
-        playMusic();
+        const playerParameters = new URLSearchParams({
+          autoplay: '1',
+          controls: '1',
+          playsinline: '1',
+          rel: '0',
+          enablejsapi: '1',
+          origin: window.location.origin,
+          widget_referrer: window.location.href
+        });
+        player.src = `https://www.youtube.com/embed/fdJrSjMgPFE?${playerParameters.toString()}`;
         document.body.classList.add('opened');
         window.setTimeout(() => {
           intro.classList.add('dismissed');
@@ -306,7 +221,6 @@
           document.getElementById('title').focus({ preventScroll: true });
         }, reduceMotion ? 30 : 1150);
       });
-      musicToggle.addEventListener('click', () => musicPlaying ? pauseMusic() : playMusic());
       const button = document.getElementById('wish-button');
       const canvas = document.getElementById('confetti');
       const ctx = canvas.getContext('2d');
