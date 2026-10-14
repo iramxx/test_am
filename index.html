@@ -99,11 +99,6 @@
     .intro-screen.opening .halo { animation: halo-burst 1.35s ease-out forwards; }
     .intro-screen.opening .intro-button { animation: button-burst .72s ease-in forwards; }
     .intro-screen.dismissed { opacity: 0; visibility: hidden; pointer-events: none; }
-    .now-playing { position: fixed; z-index: 8; right: 1rem; bottom: 1rem; width: min(360px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid #cba86b99; border-radius: 13px; color: #fff6e9; background: #260914ed; box-shadow: 0 12px 36px #16050dbb; animation: player-appear .5s ease-out both; }
-    .now-playing[hidden] { display: none; }
-    .now-playing audio { display: block; width: calc(100% - 1.2rem); height: 42px; margin: .7rem .6rem .4rem; accent-color: #cba86b; }
-    .now-playing p { margin: .65rem .8rem .8rem; font-size: .72rem; letter-spacing: .02em; line-height: 1.5; }
-    .now-playing a { color: #e8c98d; }
     @keyframes slow-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
     @keyframes seal-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
     @keyframes petal-drift { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-28deg); } 50% { transform: translate3d(13px, -18px, 0) rotate(18deg); } }
@@ -114,7 +109,6 @@
     @keyframes portal-open { 0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(3.8) rotate(22deg); } }
     @keyframes halo-burst { to { opacity: 0; transform: translate(-50%, -50%) scale(5); filter: blur(70px); } }
     @keyframes button-burst { to { opacity: 0; transform: scale(.68); filter: blur(10px); } }
-    @keyframes player-appear { from { opacity: 0; transform: translateY(18px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
     @media (max-width: 700px) {
       .hero { min-height: 88svh; }
       .s1 { left: 7%; } .s2 { right: 8%; } .s3 { left: 10%; } .s4 { right: 9%; }
@@ -123,7 +117,6 @@
       .future-copy, .seal { justify-self: center; }
       .future p { margin-left: auto; margin-right: auto; }
       .prescription { text-align: left; }
-      .now-playing { right: .65rem; bottom: .65rem; width: min(360px, calc(100vw - 1.3rem)); }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
   </style>
@@ -180,17 +173,13 @@
       <button class="button" id="wish-button" type="button">Make a little birthday wish <span aria-hidden="true">✦</span></button>
     </section>
   </main>
-  <aside class="now-playing" id="now-playing" aria-label="Birthday soundtrack" hidden>
-    <audio id="song-player" controls preload="none" aria-label="The Weeknd — Blinding Lights"></audio>
-    <p>Birthday soundtrack: The Weeknd · “Blinding Lights” · <a href="https://www.youtube.com/watch?v=4NRXx6U8ABQ" target="_blank" rel="noopener noreferrer">Official video</a></p>
-  </aside>
+  <audio id="song-player" preload="none" aria-label="Birthday soundtrack" hidden></audio>
   <footer>Made for Amira, with a little burgundy, a little sparkle, and a lot of care.</footer>
   <script>
     (() => {
       const intro = document.getElementById('intro-screen');
       const openButton = document.getElementById('open-gift');
       const content = document.getElementById('birthday-content');
-      const nowPlaying = document.getElementById('now-playing');
       const player = document.getElementById('song-player');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const reveals = document.querySelectorAll('.reveal');
@@ -208,7 +197,6 @@
         intro.classList.add('opening');
         content.removeAttribute('inert');
         content.removeAttribute('aria-hidden');
-        nowPlaying.hidden = false;
         player.src = new URL('assets/blinding-lights.mp3', document.baseURI).href;
         player.volume = 0.45;
         player.play().catch(() => { player.controls = true; });
