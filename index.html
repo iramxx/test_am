@@ -31,11 +31,16 @@
       padding: 5.5rem 1.5rem 4.5rem; color: var(--cream); text-align: center;
       background: radial-gradient(ellipse at 50% 45%, #74263b 0%, #4b1025 42%, #2d0a19 100%);
     }
-    .hero::before, .hero::after { content: ""; position: absolute; width: min(75vw, 760px); aspect-ratio: 1; border: 1px solid #cba86b3b; border-radius: 50%; pointer-events: none; }
-    .hero::before { width: min(95vw, 940px); }
-    .hero::after { width: min(73vw, 720px); }
+    .hero::before, .hero::after { content: ""; position: absolute; z-index: 0; inset: 50% auto auto 50%; aspect-ratio: 1; border: 1px solid #d7b77530; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); }
+    .hero::before { width: min(88vmin, 820px); box-shadow: 0 0 0 18px #d7b77508, inset 0 0 60px #d7b7750b; animation: slow-turn 70s linear infinite; }
+    .hero::after { width: min(65vmin, 610px); border-style: dashed; border-color: #dfb77e35; animation: slow-turn 95s linear infinite reverse; }
     .glow { position: absolute; width: 360px; aspect-ratio: 1; border-radius: 50%; background: #d84e6330; filter: blur(80px); }
     .hero-inner { position: relative; z-index: 1; width: min(100%, 770px); }
+    .float-petal { position: absolute; z-index: 1; width: 12px; height: 19px; border-radius: 75% 0 75% 75%; background: linear-gradient(145deg, #edc99a, #bc6472 80%); opacity: .72; filter: drop-shadow(0 0 9px #d98e8e66); pointer-events: none; animation: petal-drift 6s ease-in-out infinite; }
+    .float-petal.p1 { top: 24%; left: 17%; }
+    .float-petal.p2 { top: 37%; right: 17%; width: 9px; height: 14px; animation-delay: -2.1s; }
+    .float-petal.p3 { bottom: 24%; left: 24%; width: 8px; height: 13px; animation-delay: -3.6s; }
+    .float-petal.p4 { bottom: 19%; right: 23%; animation-delay: -1.2s; }
     .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .24em; font-size: .7rem; font-weight: 600; }
     .hero .eyebrow { margin: 0 0 2.15rem; }
     h1, h2, blockquote { font-family: var(--serif); font-weight: 400; }
@@ -56,28 +61,27 @@
     .note-copy { max-width: 610px; margin: 0 auto; color: #624449; font-family: var(--serif); font-size: clamp(1.15rem, 2.35vw, 1.4rem); line-height: 1.85; }
     .note-copy p { margin: .8rem 0; }
     .signoff { display: inline-block; margin-top: 1rem; color: var(--wine); font-family: var(--serif); font-size: 1.35rem; font-style: italic; }
-    .future { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 7vw, 6rem); align-items: center; background: #f0e1d4; }
+    .future { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 7vw, 6rem); align-items: center; background: radial-gradient(ellipse at 78% 48%, #f6e8d9 0%, #f0e1d4 65%); }
     .future-copy { width: min(100%, 480px); justify-self: end; }
     .future h2 { color: var(--wine); }
     .future p { max-width: 460px; color: #6b4e4e; font-size: 1rem; line-height: 1.75; }
-    .seal { display: grid; place-items: center; justify-self: start; width: min(70vw, 290px); aspect-ratio: 1; border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 0 0 8px #cba86b18, 0 0 0 16px #cba86b10; color: var(--cream); text-align: center; background: radial-gradient(circle at 35% 30%, #7d3044, var(--wine) 68%); }
+    .seal { display: grid; place-items: center; justify-self: start; position: relative; width: min(70vw, 290px); aspect-ratio: 1; border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 0 0 8px #cba86b18, 0 0 0 16px #cba86b10; color: var(--cream); text-align: center; background: radial-gradient(circle at 35% 30%, #7d3044, var(--wine) 68%); animation: seal-float 5s ease-in-out infinite; }
+    .seal::before, .seal::after { content: "✦"; position: absolute; display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid #cba86b99; border-radius: 50%; color: var(--gold); background: #4b1025; box-shadow: 0 0 22px #cba86b55; }
+    .seal::before { top: 10%; right: 5%; animation: twinkle 2.5s ease-in-out infinite alternate; }
+    .seal::after { bottom: 12%; left: 3%; width: 1.5rem; height: 1.5rem; font-size: .75rem; animation: twinkle 2.1s ease-in-out .5s infinite alternate; }
     .seal-inner { padding: 1.25rem; }
     .seal .small { display: block; margin-bottom: .8rem; color: var(--gold); font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; }
     .seal strong { display: block; font: 400 clamp(2.7rem, 7vw, 4rem)/.9 var(--serif); }
     .seal em { display: block; margin-top: .8rem; color: var(--rose); font: italic 1.1rem var(--serif); }
     .prescription { display: inline-block; margin-top: .8rem; padding: .85rem 1rem; border-left: 2px solid var(--gold); color: var(--wine); background: #fff9f050; font-family: var(--serif); font-style: italic; }
-    .soundtrack { text-align: center; background: var(--paper); }
-    .soundtrack h2 { color: var(--wine); }
-    .soundtrack-intro { margin: 0 auto 2rem; color: var(--muted); font-family: var(--serif); font-size: 1.1rem; }
-    .records { display: flex; justify-content: center; flex-wrap: wrap; gap: .65rem; width: min(100%, 780px); margin: 0 auto; }
-    .record { padding: .7rem 1rem; border: 1px solid #dbc9bd; border-radius: 99px; color: #663040; background: #fffdf9; font-size: .88rem; }
-    .music-note { margin-top: 2rem; color: #927c77; font: italic .98rem var(--serif); }
     .closing { padding: 5rem 1.5rem 5.5rem; color: var(--cream); background: var(--wine-dark); text-align: center; }
     .closing blockquote { max-width: 720px; margin: .7rem auto 1.7rem; color: var(--cream); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; }
     .closing blockquote em { color: var(--rose); }
     .closing .button { margin-top: .7rem; }
     footer { padding: 1.1rem; color: #cdb9af; background: var(--wine-dark); text-align: center; font-size: .72rem; letter-spacing: .07em; }
     #confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .85s ease, transform .85s cubic-bezier(.2,.75,.25,1); }
+    .reveal.visible { opacity: 1; transform: none; }
     body:not(.opened) { overflow: hidden; }
     #birthday-content { opacity: 0; transition: opacity 1s ease .25s; }
     body.opened #birthday-content { opacity: 1; }
@@ -100,6 +104,9 @@
     .now-playing iframe { display: block; width: 100%; height: 200px; border: 0; background: #18050c; }
     .now-playing p { margin: .65rem .8rem .8rem; font-size: .72rem; letter-spacing: .02em; line-height: 1.5; }
     .now-playing a { color: #e8c98d; }
+    @keyframes slow-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    @keyframes seal-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
+    @keyframes petal-drift { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-28deg); } 50% { transform: translate3d(13px, -18px, 0) rotate(18deg); } }
     @keyframes orbit { to { transform: translate(-50%, -50%) rotate(360deg); } }
     @keyframes halo { from { opacity: .45; transform: translate(-50%, -50%) scale(.82); } to { opacity: .9; transform: translate(-50%, -50%) scale(1.12); } }
     @keyframes twinkle { from { opacity: .36; transform: scale(.75) rotate(-18deg); } to { opacity: 1; transform: scale(1.2) rotate(18deg); } }
@@ -111,6 +118,7 @@
     @media (max-width: 700px) {
       .hero { min-height: 88svh; }
       .s1 { left: 7%; } .s2 { right: 8%; } .s3 { left: 10%; } .s4 { right: 9%; }
+      .float-petal.p1 { left: 8%; } .float-petal.p2 { right: 8%; } .float-petal.p3 { left: 10%; } .float-petal.p4 { right: 10%; }
       .future { grid-template-columns: 1fr; text-align: center; }
       .future-copy, .seal { justify-self: center; }
       .future p { margin-left: auto; margin-right: auto; }
@@ -118,7 +126,7 @@
       .now-playing { right: .65rem; bottom: .65rem; width: min(360px, calc(100vw - 1.3rem)); }
       .now-playing iframe { height: 200px; }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
@@ -130,6 +138,7 @@
   <main id="birthday-content" aria-hidden="true" inert>
     <section class="hero" aria-labelledby="title">
       <span class="glow" aria-hidden="true"></span><span class="sparkle s1" aria-hidden="true">✦</span><span class="sparkle s2" aria-hidden="true">✧</span><span class="sparkle s3" aria-hidden="true">✧</span><span class="sparkle s4" aria-hidden="true">✦</span>
+      <span class="float-petal p1" aria-hidden="true"></span><span class="float-petal p2" aria-hidden="true"></span><span class="float-petal p3" aria-hidden="true"></span><span class="float-petal p4" aria-hidden="true"></span>
       <div class="hero-inner">
         <p class="eyebrow">A little birthday page, made for you</p>
         <h1 id="title">For <em>Amira</em></h1>
@@ -141,7 +150,7 @@
     </section>
 
     <section class="section" id="note">
-      <article class="note">
+      <article class="note reveal">
         <p class="eyebrow">Dear Amira</p>
         <h2>A little note <em>for you.</em></h2>
         <div class="note-copy">
@@ -154,28 +163,18 @@
     </section>
 
     <section class="section future" aria-labelledby="future-title">
-      <div class="future-copy">
+      <div class="future-copy reveal">
         <p class="eyebrow">To the future Dr Amira</p>
         <h2 id="future-title">Big heart.<br><em>Steady hands.</em></h2>
         <p>Your dream of becoming a surgeon is a pretty incredible one. It takes a lot of care and determination—and you already have so much of the sweetness and heart that make people feel safe with you.</p>
         <p class="prescription">Birthday prescription: cake, a great playlist, a little celebration, and absolutely no studying today. Doctor’s orders (mine, for the next 24 hours).</p>
       </div>
-      <div class="seal" role="img" aria-label="A playful honorary badge for future doctor Amira">
+      <div class="seal reveal" role="img" aria-label="A playful honorary badge for future doctor Amira">
         <div class="seal-inner"><span class="small">Honorary birthday badge</span><strong>Dr.<br>Amira</strong><em>in the making</em></div>
       </div>
     </section>
 
-    <section class="section soundtrack" aria-labelledby="soundtrack-title">
-      <p class="eyebrow">Cue the birthday soundtrack</p>
-      <h2 id="soundtrack-title">A little bit <em>dramatic.</em><br>A lot iconic.</h2>
-      <p class="soundtrack-intro">For the main character of October 16:</p>
-      <div class="records" aria-label="Artists for Amira's birthday soundtrack">
-        <span class="record">The Weeknd</span><span class="record">Arctic Monkeys</span><span class="record">The Neighbourhood</span><span class="record">Chase Atlantic</span><span class="record">Nirvana</span><span class="record">Lana Del Rey</span>
-      </div>
-      <p class="music-note">Now please enjoy your birthday like the lead in your own music video.</p>
-    </section>
-
-    <section class="closing">
+    <section class="closing reveal">
       <p class="eyebrow">One more thing</p>
       <blockquote>Here’s to more conversations, more laughter, and more little moments I’m <em>glad we get to share.</em></blockquote>
       <p class="eyebrow">Happy birthday, Amira · 16 October</p>
@@ -183,8 +182,8 @@
     </section>
   </main>
   <aside class="now-playing" id="now-playing" aria-label="Birthday soundtrack" hidden>
-    <iframe id="song-player" title="Chris Grey — Let The World Burn, official music video" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
-    <p>Now playing: Chris Grey · “Let The World Burn” · <a href="https://www.youtube.com/watch?v=fdJrSjMgPFE" target="_blank" rel="noopener noreferrer">Open on YouTube</a></p>
+    <iframe id="song-player" title="The Weeknd — Blinding Lights, official music video" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+    <p>Birthday soundtrack: The Weeknd · “Blinding Lights” · <a href="https://www.youtube.com/watch?v=4NRXx6U8ABQ" target="_blank" rel="noopener noreferrer">Open on YouTube</a></p>
   </aside>
   <footer>Made for Amira, with a little burgundy, a little sparkle, and a lot of care.</footer>
   <script>
@@ -195,10 +194,18 @@
       const nowPlaying = document.getElementById('now-playing');
       const player = document.getElementById('song-player');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+        }), { threshold: .16 });
+        reveals.forEach(item => revealObserver.observe(item));
+      } else reveals.forEach(item => item.classList.add('visible'));
       let didOpen = false;
       openButton.addEventListener('click', () => {
         if (didOpen) return;
         didOpen = true;
+        if (!reduceMotion) launchPetals();
         intro.classList.add('opening');
         content.removeAttribute('inert');
         content.removeAttribute('aria-hidden');
@@ -212,7 +219,7 @@
           origin: window.location.origin,
           widget_referrer: window.location.href
         });
-        player.src = `https://www.youtube.com/embed/fdJrSjMgPFE?${playerParameters.toString()}`;
+        player.src = `https://www.youtube-nocookie.com/embed/4NRXx6U8ABQ?${playerParameters.toString()}`;
         document.body.classList.add('opened');
         window.setTimeout(() => {
           intro.classList.add('dismissed');
@@ -226,9 +233,32 @@
       const ctx = canvas.getContext('2d');
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let frame = 0;
+      let petalFrame = 0;
       function resize() { canvas.width = window.innerWidth * devicePixelRatio; canvas.height = window.innerHeight * devicePixelRatio; ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); }
       window.addEventListener('resize', resize); resize();
+      function launchPetals() {
+        const palette = ['#cba86b', '#d89a9b', '#f0c4b4', '#fbf2e7', '#a94b60'];
+        const petals = Array.from({ length: 76 }, () => {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 2 + Math.random() * 6;
+          return { x: innerWidth / 2 + (Math.random() - .5) * 70, y: innerHeight / 2 + (Math.random() - .5) * 50, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2, size: 5 + Math.random() * 9, spin: Math.random() * Math.PI * 2, turn: (Math.random() - .5) * .16, color: palette[Math.floor(Math.random() * palette.length)], age: 0 };
+        });
+        let ticks = 0;
+        function drawPetals() {
+          ctx.clearRect(0, 0, innerWidth, innerHeight);
+          petals.forEach(p => {
+            p.x += p.vx; p.y += p.vy; p.vy += .045; p.vx *= .995; p.spin += p.turn; p.age++;
+            ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.spin); ctx.globalAlpha = Math.max(0, 1 - p.age / 190); ctx.fillStyle = p.color;
+            ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(-p.size, -p.size * .35, -p.size * .65, -p.size * 1.6, 0, -p.size * 1.35); ctx.bezierCurveTo(p.size * .7, -p.size * 1.65, p.size, -p.size * .4, 0, 0); ctx.fill();
+            ctx.restore();
+          });
+          if (++ticks < 190) petalFrame = requestAnimationFrame(drawPetals); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+        }
+        cancelAnimationFrame(petalFrame); drawPetals();
+      }
       button.addEventListener('click', () => {
+        cancelAnimationFrame(petalFrame);
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
         if (reduced) { button.textContent = 'Wish made. Happy birthday, Amira! ✦'; return; }
         const colors = ['#cba86b', '#d89a9b', '#9f3344', '#fbf2e7'];
         const pieces = Array.from({ length: 110 }, () => ({ x: Math.random() * innerWidth, y: -20 - Math.random() * innerHeight * .45, vx: (Math.random() - .5) * 3, vy: 2 + Math.random() * 4, size: 3 + Math.random() * 5, color: colors[Math.floor(Math.random() * colors.length)], spin: Math.random() * 6 }));
