@@ -77,6 +77,36 @@
     .closing .button { margin-top: .7rem; }
     footer { padding: 1.1rem; color: #cdb9af; background: var(--wine-dark); text-align: center; font-size: .72rem; letter-spacing: .07em; }
     #confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+    body:not(.opened) { overflow: hidden; }
+    #birthday-content { opacity: 0; transition: opacity 1s ease .25s; }
+    body.opened #birthday-content { opacity: 1; }
+    .intro-screen { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 50% 48%, #77283e 0%, #4b1025 43%, #1c0711 100%); transition: opacity 1.15s ease, visibility 1.15s ease; }
+    .intro-screen::before, .intro-screen::after { content: ""; position: absolute; z-index: -1; inset: 50% auto auto 50%; width: min(74vmin, 630px); aspect-ratio: 1; border: 1px solid #d2ae7059; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 50px #dd9ca21c, inset 0 0 45px #dd9ca20c; }
+    .intro-screen::after { width: min(58vmin, 500px); border-color: #f1d5a54c; animation: orbit 42s linear infinite; border-style: dashed; }
+    .intro-screen .halo { position: absolute; z-index: -1; inset: 50% auto auto 50%; width: min(33vmin, 270px); aspect-ratio: 1; border-radius: 50%; background: #d5537227; filter: blur(28px); transform: translate(-50%, -50%); animation: halo 4s ease-in-out infinite alternate; }
+    .intro-screen .star { position: absolute; color: var(--gold); font-size: clamp(.8rem, 1.5vw, 1.2rem); animation: twinkle 2.4s ease-in-out infinite alternate; }
+    .intro-screen .star:nth-of-type(2) { top: 22%; left: 22%; } .intro-screen .star:nth-of-type(3) { top: 27%; right: 19%; animation-delay: .8s; } .intro-screen .star:nth-of-type(4) { bottom: 23%; left: 27%; animation-delay: 1.1s; } .intro-screen .star:nth-of-type(5) { bottom: 25%; right: 24%; animation-delay: .3s; }
+    .intro-button { position: relative; z-index: 1; min-width: 220px; padding: 1.12rem 1.6rem; border: 1px solid #d8b875; border-radius: 99px; color: #fff4e8; background: #531629c9; box-shadow: 0 12px 50px #12040a6b, inset 0 0 22px #d8b87515; font: 600 .77rem var(--sans); letter-spacing: .15em; text-transform: uppercase; cursor: pointer; transition: transform .3s ease, color .3s ease, background .3s ease, box-shadow .3s ease; animation: button-breathe 2.5s ease-in-out infinite; }
+    .intro-button:hover, .intro-button:focus-visible { transform: scale(1.05); color: #35101c; background: #e4c995; box-shadow: 0 0 60px #d8b87555; outline: none; }
+    .intro-button:focus-visible { outline: 2px solid #fff4e8; outline-offset: 5px; }
+    .intro-screen.opening::before { animation: portal-open 1.35s cubic-bezier(.16,.75,.2,1) forwards; }
+    .intro-screen.opening::after { animation: portal-open 1.15s cubic-bezier(.16,.75,.2,1) .08s forwards; }
+    .intro-screen.opening .halo { animation: halo-burst 1.35s ease-out forwards; }
+    .intro-screen.opening .intro-button { animation: button-burst .72s ease-in forwards; }
+    .intro-screen.dismissed { opacity: 0; visibility: hidden; pointer-events: none; }
+    .now-playing { position: fixed; z-index: 8; right: 1rem; bottom: 1rem; width: min(310px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid #cba86b99; border-radius: 13px; color: #fff6e9; background: #260914ed; box-shadow: 0 12px 36px #16050dbb; animation: player-appear .5s ease-out both; }
+    .now-playing[hidden] { display: none; }
+    .now-playing iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #18050c; }
+    .now-playing p { margin: .6rem .8rem .75rem; font-size: .72rem; letter-spacing: .03em; }
+    .now-playing a { color: #e8c98d; }
+    @keyframes orbit { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    @keyframes halo { from { opacity: .45; transform: translate(-50%, -50%) scale(.82); } to { opacity: .9; transform: translate(-50%, -50%) scale(1.12); } }
+    @keyframes twinkle { from { opacity: .36; transform: scale(.75) rotate(-18deg); } to { opacity: 1; transform: scale(1.2) rotate(18deg); } }
+    @keyframes button-breathe { 0%, 100% { box-shadow: 0 12px 50px #12040a6b, 0 0 0 0 #d8b87535; } 50% { box-shadow: 0 12px 50px #12040a6b, 0 0 0 10px #d8b87500; } }
+    @keyframes portal-open { 0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(3.8) rotate(22deg); } }
+    @keyframes halo-burst { to { opacity: 0; transform: translate(-50%, -50%) scale(5); filter: blur(70px); } }
+    @keyframes button-burst { to { opacity: 0; transform: scale(.68); filter: blur(10px); } }
+    @keyframes player-appear { from { opacity: 0; transform: translateY(18px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
     @media (max-width: 700px) {
       .hero { min-height: 88svh; }
       .s1 { left: 7%; } .s2 { right: 8%; } .s3 { left: 10%; } .s4 { right: 9%; }
@@ -84,13 +114,18 @@
       .future-copy, .seal { justify-self: center; }
       .future p { margin-left: auto; margin-right: auto; }
       .prescription { text-align: left; }
+      .now-playing { right: .65rem; bottom: .65rem; width: min(270px, calc(100vw - 1.3rem)); }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
   </style>
 </head>
 <body>
+  <section class="intro-screen" id="intro-screen" role="dialog" aria-modal="true" aria-label="Open Amira's birthday gift">
+    <span class="halo" aria-hidden="true"></span><span class="star" aria-hidden="true">✦</span><span class="star" aria-hidden="true">✧</span><span class="star" aria-hidden="true">✧</span><span class="star" aria-hidden="true">✦</span>
+    <button class="intro-button" id="open-gift" type="button">Open your birthday gift</button>
+  </section>
   <canvas id="confetti" aria-hidden="true"></canvas>
-  <main>
+  <main id="birthday-content" aria-hidden="true" inert>
     <section class="hero" aria-labelledby="title">
       <span class="glow" aria-hidden="true"></span><span class="sparkle s1" aria-hidden="true">✦</span><span class="sparkle s2" aria-hidden="true">✧</span><span class="sparkle s3" aria-hidden="true">✧</span><span class="sparkle s4" aria-hidden="true">✦</span>
       <div class="hero-inner">
@@ -145,9 +180,36 @@
       <button class="button" id="wish-button" type="button">Make a little birthday wish <span aria-hidden="true">✦</span></button>
     </section>
   </main>
+  <aside class="now-playing" id="now-playing" aria-label="Birthday soundtrack" hidden>
+    <iframe id="song-player" title="Chris Grey — Let The World Burn, official music video" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p>Now playing: Chris Grey · “Let The World Burn” · <a href="https://www.youtube.com/watch?v=fdJrSjMgPFE" target="_blank" rel="noopener noreferrer">Open on YouTube</a></p>
+  </aside>
   <footer>Made for Amira, with a little burgundy, a little sparkle, and a lot of care.</footer>
   <script>
     (() => {
+      const intro = document.getElementById('intro-screen');
+      const openButton = document.getElementById('open-gift');
+      const content = document.getElementById('birthday-content');
+      const player = document.getElementById('song-player');
+      const nowPlaying = document.getElementById('now-playing');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let didOpen = false;
+      openButton.addEventListener('click', () => {
+        if (didOpen) return;
+        didOpen = true;
+        intro.classList.add('opening');
+        content.removeAttribute('inert');
+        content.removeAttribute('aria-hidden');
+        nowPlaying.hidden = false;
+        player.src = 'https://www.youtube-nocookie.com/embed/fdJrSjMgPFE?autoplay=1&controls=1&playsinline=1&rel=0';
+        document.body.classList.add('opened');
+        window.setTimeout(() => {
+          intro.classList.add('dismissed');
+          intro.setAttribute('aria-hidden', 'true');
+          intro.removeAttribute('aria-modal');
+          document.getElementById('title').focus({ preventScroll: true });
+        }, reduceMotion ? 30 : 1150);
+      });
       const button = document.getElementById('wish-button');
       const canvas = document.getElementById('confetti');
       const ctx = canvas.getContext('2d');
