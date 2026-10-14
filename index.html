@@ -197,7 +197,10 @@
         intro.classList.add('opening');
         content.removeAttribute('inert');
         content.removeAttribute('aria-hidden');
-        player.src = new URL('assets/blinding-lights.mp3', document.baseURI).href;
+        player.addEventListener('loadedmetadata', () => {
+          if (player.currentTime < 60) player.currentTime = 60;
+        }, { once: true });
+        player.src = new URL('assets/blinding-lights.mp3#t=60', document.baseURI).href;
         player.volume = 0.45;
         player.play().catch(() => { player.controls = true; });
         document.body.classList.add('opened');
